@@ -1,11 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
-
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-  </PropertyGroup>
+<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\Wizards.SolutionGenerator.UseCases\Wizards.SolutionGenerator.UseCases.csproj" />
+    <ProjectReference Include="..\Wizards.SolutionGenerator.UseCases.Abstractions\Wizards.SolutionGenerator.UseCases.Abstractions.csproj" />
     <ProjectReference Include="..\Wizards.UseCases\Wizards.UseCases.csproj" />
   </ItemGroup>
 

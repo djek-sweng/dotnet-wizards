@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wizards.SolutionGenerator.A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wizards.UseCases.Abstractions", "Wizards.UseCases.Abstractions\Wizards.UseCases.Abstractions.csproj", "{2581082F-1D59-4182-9D25-123043A5DB5A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wizards.SolutionGenerator.UseCases", "Wizards.SolutionGenerator.UseCases\Wizards.SolutionGenerator.UseCases.csproj", "{613D2172-C52C-41CE-9C04-1CA6B05CFCBD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wizards.SolutionGenerator.UseCases.Abstractions", "Wizards.SolutionGenerator.UseCases.Abstractions\Wizards.SolutionGenerator.UseCases.Abstractions.csproj", "{48EB5804-6E59-44F4-9DA1-E15CBAB6431E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +34,13 @@ Global
 		{2581082F-1D59-4182-9D25-123043A5DB5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2581082F-1D59-4182-9D25-123043A5DB5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2581082F-1D59-4182-9D25-123043A5DB5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{613D2172-C52C-41CE-9C04-1CA6B05CFCBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{613D2172-C52C-41CE-9C04-1CA6B05CFCBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{613D2172-C52C-41CE-9C04-1CA6B05CFCBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{613D2172-C52C-41CE-9C04-1CA6B05CFCBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48EB5804-6E59-44F4-9DA1-E15CBAB6431E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48EB5804-6E59-44F4-9DA1-E15CBAB6431E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48EB5804-6E59-44F4-9DA1-E15CBAB6431E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48EB5804-6E59-44F4-9DA1-E15CBAB6431E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -1,7 +1,8 @@
 namespace Wizards.UseCases.Abstractions;
 
-public interface IFindCsharpProjectFilesUseCase
+public interface IFindCSharpProjectFilesUseCase
 {
-    Task<string[]> ExecuteAsync(string path,
+    Task<IEnumerable<string>> ExecuteAsync(
+        string path,
         CancellationToken cancellationToken = default);
 }

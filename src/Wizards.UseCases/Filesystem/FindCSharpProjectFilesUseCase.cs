@@ -1,8 +1,9 @@
 namespace Wizards.UseCases.Filesystem;
 
-public class FindCSharpProjectFilesUseCase : IFindCsharpProjectFilesUseCase
+public class FindCSharpProjectFilesUseCase : IFindCSharpProjectFilesUseCase
 {
-    public Task<string[]> ExecuteAsync(string path,
+    public Task<IEnumerable<string>> ExecuteAsync(
+        string path,
         CancellationToken cancellationToken)
     {
         var files = Directory.GetFiles(
@@ -10,6 +11,6 @@ public class FindCSharpProjectFilesUseCase : IFindCsharpProjectFilesUseCase
             searchPattern: "*.csproj",
             SearchOption.AllDirectories);
 
-        return Task.FromResult(files);
+        return Task.FromResult<IEnumerable<string>>(files);
     }
 }
