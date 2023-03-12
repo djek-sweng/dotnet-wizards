@@ -1,4 +1,4 @@
-namespace Wizards.SolutionGenerator.UseCases.Makefile;
+namespace Wizards.SolutionGenerator.UseCases.Filesystem;
 
 public class GenerateMakefileUseCase : IGenerateMakefileUseCase
 {
@@ -31,6 +31,7 @@ public class GenerateMakefileUseCase : IGenerateMakefileUseCase
 
         var makefileString = GenerateMakefileString(path, filesRelative);
 
+        // todo: Move to settings.
         var filePath = path + Path.DirectorySeparatorChar + "makefile.json";
 
         await _writeFileUseCase.ExecuteAsync(

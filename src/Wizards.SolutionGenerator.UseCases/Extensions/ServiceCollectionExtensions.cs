@@ -6,7 +6,9 @@ public static class ServiceCollectionExtensions
     {
         services.AddWizardsUseCases();
 
+        // Filesystem
         services.AddScoped<IGenerateMakefileUseCase, GenerateMakefileUseCase>();
+        services.AddScoped<IGenerateSolutionUseCase, GenerateSolutionUseCase>();
 
         return services;
     }

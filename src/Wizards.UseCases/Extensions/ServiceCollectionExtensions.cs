@@ -6,6 +6,7 @@ public static class ServiceCollectionExtensions
     {
         // Filesystem
         services.AddScoped<IFindCSharpProjectFilesUseCase, FindCSharpProjectFilesUseCase>();
+        services.AddScoped<IRunShellCommandUseCase, RunShellCommandUseCase>();
         services.AddScoped<IWriteFileUseCase, WriteFileUseCase>();
 
         // String
