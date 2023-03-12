@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <Target Name="NetClean" BeforeTargets="Clean">
+    <RemoveDir Directories="bin" />
+    <RemoveDir Directories="obj" />
+  </Target>
+
+</Project>

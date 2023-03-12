@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Target Name="NetClean" BeforeTargets="Clean">
+    <RemoveDir Directories="bin" />
+    <RemoveDir Directories="obj" />
+  </Target>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Wizards.UseCases.Abstractions\Wizards.UseCases.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>
