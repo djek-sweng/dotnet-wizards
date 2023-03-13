@@ -1,8 +1,8 @@
-namespace Wizards.Commands.DotNet;
+namespace Wizards.Commands.Abstractions;
 
 public interface IDotNetSolutionAddCommand
 {
-    public Task ExecuteAsync(
+    Task ExecuteAsync(
         string directory,
         string name,
         string reference,

@@ -18,6 +18,7 @@ public class GenerateMakefileUseCase : IGenerateMakefileUseCase
 
     public async Task ExecuteAsync(
         string path,
+        string name,
         CancellationToken cancellationToken = default)
     {
         var filesFull = await _findCSharpProjectFilesUseCase.ExecuteAsync(
@@ -31,8 +32,7 @@ public class GenerateMakefileUseCase : IGenerateMakefileUseCase
 
         var makefileString = GenerateMakefileString(path, filesRelative);
 
-        // todo: Move to settings.
-        var filePath = path + Path.DirectorySeparatorChar + "makefile.json";
+        var filePath = path + Path.DirectorySeparatorChar + name;
 
         await _writeFileUseCase.ExecuteAsync(
             path: filePath,

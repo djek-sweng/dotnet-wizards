@@ -2,55 +2,59 @@ namespace Wizards.SolutionGenerator.UseCases.Filesystem;
 
 public class GenerateSolutionUseCase : IGenerateSolutionUseCase
 {
-    private readonly IRunShellCommandUseCase _runShellCommandUseCase;
     private readonly IFindCSharpProjectFilesUseCase _findCSharpProjectFilesUseCase;
     private readonly IRemoveStringStartsWithUseCase _removeStringStartsWithUseCase;
+    private readonly IDotNetInfoCommand _dotNetInfoCommand;
+    private readonly IDotNetNewSolutionCommand _dotNetNewSolutionCommand;
+    private readonly IDotNetSolutionAddCommand _dotNetSolutionAddCommand;
 
     public GenerateSolutionUseCase(
-        IRunShellCommandUseCase runShellCommandUseCase,
         IFindCSharpProjectFilesUseCase findCSharpProjectFilesUseCase,
-        IRemoveStringStartsWithUseCase removeStringStartsWithUseCase)
+        IRemoveStringStartsWithUseCase removeStringStartsWithUseCase,
+        IDotNetInfoCommand dotNetInfoCommand,
+        IDotNetNewSolutionCommand dotNetNewSolutionCommand,
+        IDotNetSolutionAddCommand dotNetSolutionAddCommand)
     {
-        _runShellCommandUseCase = runShellCommandUseCase;
         _findCSharpProjectFilesUseCase = findCSharpProjectFilesUseCase;
         _removeStringStartsWithUseCase = removeStringStartsWithUseCase;
+        _dotNetInfoCommand = dotNetInfoCommand;
+        _dotNetNewSolutionCommand = dotNetNewSolutionCommand;
+        _dotNetSolutionAddCommand = dotNetSolutionAddCommand;
     }
 
     public async Task ExecuteAsync(
         string path,
+        string name,
         CancellationToken cancellationToken = default)
     {
-        await _runShellCommandUseCase.ExecuteAsync(
-            "dotnet --info",
-            cancellationToken);
+        // var currentDirectory = Directory.GetCurrentDirectory();
 
-        //var currentDirectory = Directory.GetCurrentDirectory();
-
-        var solutionName = /*path */ "MySolution";
-
-        await _runShellCommandUseCase.ExecuteAsync(
-            $@"cd ""{path}""; rm -rf ""{solutionName}.sln""",
-            cancellationToken);
-
-        await _runShellCommandUseCase.ExecuteAsync(
-            $@"cd ""{path}""; dotnet new ""sln"" -n ""{solutionName}""",
-            cancellationToken);
-
-        #region Generate solution from makefile.
+        #region Generate solution from directory.
 
         var filesFull = await _findCSharpProjectFilesUseCase.ExecuteAsync(
-            path,
+            path: path,
             cancellationToken);
 
         var filesRelative = await _removeStringStartsWithUseCase.ExecuteAsync(
-            filesFull,
-            path,
+            fulls: filesFull,
+            startsWith: path,
+            cancellationToken);
+
+        await _dotNetInfoCommand.ExecuteAsync(
+            directory: path,
+            cancellationToken);
+
+        await _dotNetNewSolutionCommand.ExecuteAsync(
+            directory: path,
+            name: name,
             cancellationToken);
 
         foreach (var file in filesRelative)
         {
-            await _runShellCommandUseCase.ExecuteAsync(
-                $@"cd ""{path}""; dotnet sln ""{solutionName}.sln"" add ""{file}"";",
+            await _dotNetSolutionAddCommand.ExecuteAsync(
+                directory: path,
+                name: name,
+                reference: file,
                 cancellationToken);
         }
 

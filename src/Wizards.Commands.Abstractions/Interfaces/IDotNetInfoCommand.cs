@@ -1,9 +1,8 @@
 namespace Wizards.Commands.Abstractions;
 
-public interface IDotNetNewSolutionCommand
+public interface IDotNetInfoCommand
 {
     Task ExecuteAsync(
         string directory,
-        string name,
         CancellationToken cancellationToken = default);
 }

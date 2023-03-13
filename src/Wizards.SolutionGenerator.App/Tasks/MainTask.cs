@@ -27,14 +27,14 @@ public class MainTask : IMainTask
     private async Task RunOptions(CommandLineOptions options)
     {
         // Handle options.
-        var path = options.Path;
-
-        await _generateMakefileUseCase.ExecuteAsync(path);
-
-        // todo: Move to settings.
-        var filePath = path + Path.DirectorySeparatorChar + "makefile.json";
-
-        await _generateSolutionUseCase.ExecuteAsync(path: /*filePath*/ path);
+        if (options.GenerateMakefile)
+        {
+            await _generateMakefileUseCase.ExecuteAsync(options.Path, options.Name);
+        }
+        else if (options.GenerateSolution)
+        {
+            await _generateSolutionUseCase.ExecuteAsync(options.Path, options.Name);
+        }
     }
 
     private Task HandleParseError(IEnumerable<Error> errors)
