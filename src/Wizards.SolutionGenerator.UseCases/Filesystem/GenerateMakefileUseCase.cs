@@ -34,7 +34,7 @@ public class GenerateMakefileUseCase : IGenerateMakefileUseCase
 
         var makefileString = GenerateMakefileString(directory, filesRelative);
 
-        var makefilePath = directory + Path.DirectorySeparatorChar + name;
+        var makefilePath = directory + Path.DirectorySeparatorChar + name + ".sln_mk.json";
 
         await _writeFileUseCase.ExecuteAsync(
             path: makefilePath,

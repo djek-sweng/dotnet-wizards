@@ -16,7 +16,7 @@ public class DotNetNewSolutionCommand : IDotNetNewSolutionCommand
         CancellationToken cancellationToken = default)
     {
         await _runShellCommandUseCase.ExecuteAsync(
-            command: $@"cd ""{directory}""; rm -rf ""{name}.sln""",
+            command: $@"cd ""{directory}""; rm -rf ""{name}.sln;""",
             cancellationToken);
 
         await _runShellCommandUseCase.ExecuteAsync(
