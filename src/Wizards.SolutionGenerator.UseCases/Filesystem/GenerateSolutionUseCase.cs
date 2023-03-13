@@ -24,9 +24,7 @@ public class GenerateSolutionUseCase : IGenerateSolutionUseCase
             "dotnet --info",
             cancellationToken);
 
-        #region Test Code here.
-
-        var currentDirectory = Directory.GetCurrentDirectory();
+        //var currentDirectory = Directory.GetCurrentDirectory();
 
         var solutionName = /*path */ "MySolution";
 
@@ -37,6 +35,8 @@ public class GenerateSolutionUseCase : IGenerateSolutionUseCase
         await _runShellCommandUseCase.ExecuteAsync(
             $@"cd ""{path}""; dotnet new ""sln"" -n ""{solutionName}""",
             cancellationToken);
+
+        #region Generate solution from makefile.
 
         var filesFull = await _findCSharpProjectFilesUseCase.ExecuteAsync(
             path,
@@ -49,8 +49,6 @@ public class GenerateSolutionUseCase : IGenerateSolutionUseCase
 
         foreach (var file in filesRelative)
         {
-            //dotnet sln "Wizards.sln" add "Wizards.UseCases"
-
             await _runShellCommandUseCase.ExecuteAsync(
                 $@"cd ""{path}""; dotnet sln ""{solutionName}.sln"" add ""{file}"";",
                 cancellationToken);

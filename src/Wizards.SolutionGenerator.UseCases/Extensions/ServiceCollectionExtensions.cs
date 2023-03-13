@@ -4,6 +4,8 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddWizardsSolutionGeneratorUseCases(this IServiceCollection services)
     {
+        // Libraries
+        services.AddWizardsCommands();
         services.AddWizardsUseCases();
 
         // Filesystem

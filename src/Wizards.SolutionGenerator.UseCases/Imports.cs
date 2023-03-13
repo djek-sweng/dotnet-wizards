@@ -3,6 +3,7 @@ global using System.Text.Json.Serialization;
 
 global using Microsoft.Extensions.DependencyInjection;
 
+global using Wizards.Commands.Extensions;
 global using Wizards.UseCases.Abstractions;
 global using Wizards.UseCases.Extensions;
 

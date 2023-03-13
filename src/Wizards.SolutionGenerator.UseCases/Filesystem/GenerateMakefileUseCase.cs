@@ -40,7 +40,20 @@ public class GenerateMakefileUseCase : IGenerateMakefileUseCase
             cancellationToken);
     }
 
-    private static string GenerateMakefileString(string path, IEnumerable<string> filesRelative)
+    private static string GenerateMakefileString(
+        string path,
+        IEnumerable<string> filesRelative)
+    {
+        var makefileObject = GenerateMakefileObject(path, filesRelative);
+
+        var options = new JsonSerializerOptions { WriteIndented = true };
+
+        return JsonSerializer.Serialize(makefileObject, options);
+    }
+
+    private static MakefileObject GenerateMakefileObject(
+        string path,
+        IEnumerable<string> filesRelative)
     {
         var cSharpFileObjects = filesRelative
             .Select(fileRelative =>
@@ -51,25 +64,21 @@ public class GenerateMakefileUseCase : IGenerateMakefileUseCase
                 })
             .ToList();
 
-        var makefileObject = new MakefileObject
+        return new MakefileObject
         {
             RootPath = path,
             ProjectFiles = cSharpFileObjects
         };
-
-        var options = new JsonSerializerOptions { WriteIndented = true };
-
-        return JsonSerializer.Serialize(makefileObject, options);
     }
 }
 
-file class MakefileObject
+internal class MakefileObject
 {
     public string RootPath { get; set; } = string.Empty;
     public IEnumerable<CSharpFileObject> ProjectFiles { get; set; } = ArraySegment<CSharpFileObject>.Empty;
 }
 
-file class CSharpFileObject
+internal class CSharpFileObject
 {
     public string SolutionDirectory { get; set; } = string.Empty;
     public string RelativePath { get; set; } = string.Empty;
