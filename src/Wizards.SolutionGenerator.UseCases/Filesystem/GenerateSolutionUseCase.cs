@@ -23,36 +23,46 @@ public class GenerateSolutionUseCase : IGenerateSolutionUseCase
     }
 
     public async Task ExecuteAsync(
-        string path,
+        string directory,
         string name,
         CancellationToken cancellationToken = default)
     {
-        // var currentDirectory = Directory.GetCurrentDirectory();
+        //
+        //
+        //
+        #region Generate solution from makefile.
 
+        #endregion
+
+        //
+        //
+        //
         #region Generate solution from directory.
 
         var filesFull = await _findCSharpProjectFilesUseCase.ExecuteAsync(
-            path: path,
+            directory: directory,
             cancellationToken);
+
+        var startsWith = directory;
 
         var filesRelative = await _removeStringStartsWithUseCase.ExecuteAsync(
             fulls: filesFull,
-            startsWith: path,
+            startsWith: startsWith,
             cancellationToken);
 
         await _dotNetInfoCommand.ExecuteAsync(
-            directory: path,
+            directory: directory,
             cancellationToken);
 
         await _dotNetNewSolutionCommand.ExecuteAsync(
-            directory: path,
+            directory: directory,
             name: name,
             cancellationToken);
 
         foreach (var file in filesRelative)
         {
             await _dotNetSolutionAddCommand.ExecuteAsync(
-                directory: path,
+                directory: directory,
                 name: name,
                 reference: file,
                 cancellationToken);

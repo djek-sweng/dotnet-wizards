@@ -16,7 +16,7 @@ public class RemoveStringStartsWithUseCase : IRemoveStringStartsWithUseCase
             var index = full.IndexOf(startsWith, StringComparison.Ordinal);
             if (index > -1)
             {
-                relative = full[(startsWith.Length + 1)..];
+                relative = full[startsWith.Length ..];
             }
 
             relatives.Add(relative);

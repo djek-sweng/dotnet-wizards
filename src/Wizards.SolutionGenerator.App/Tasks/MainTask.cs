@@ -29,11 +29,15 @@ public class MainTask : IMainTask
         // Handle options.
         if (options.GenerateMakefile)
         {
-            await _generateMakefileUseCase.ExecuteAsync(options.Path, options.Name);
+            await _generateMakefileUseCase.ExecuteAsync(
+                directory: options.Source,
+                name: options.Name);
         }
         else if (options.GenerateSolution)
         {
-            await _generateSolutionUseCase.ExecuteAsync(options.Path, options.Name);
+            await _generateSolutionUseCase.ExecuteAsync(
+                directory: options.Source,
+                name: options.Name);
         }
     }
 

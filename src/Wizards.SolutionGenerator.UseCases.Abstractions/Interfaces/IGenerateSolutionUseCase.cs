@@ -3,7 +3,7 @@ namespace Wizards.SolutionGenerator.UseCases.Abstractions;
 public interface IGenerateSolutionUseCase
 {
     Task ExecuteAsync(
-        string path,
+        string directory,
         string name,
         CancellationToken cancellationToken = default);
 }

@@ -16,6 +16,7 @@ public class DotNetSolutionAddCommand : IDotNetSolutionAddCommand
         string reference,
         CancellationToken cancellationToken = default)
     {
+        // dotnet sln "Wizards.sln" add "Wizards.UseCases" --solution-folder "UseCases"
         await _runShellCommandUseCase.ExecuteAsync(
             $@"cd ""{directory}""; dotnet sln ""{name}.sln"" add ""{reference}"";",
             cancellationToken);
