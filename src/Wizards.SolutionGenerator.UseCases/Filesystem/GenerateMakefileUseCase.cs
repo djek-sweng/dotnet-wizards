@@ -6,15 +6,18 @@ public class GenerateMakefileUseCase : IGenerateMakefileUseCase
 
     private readonly IFindCSharpProjectFilesUseCase _findCSharpProjectFilesUseCase;
     private readonly IRemoveStringStartsWithUseCase _removeStringStartsWithUseCase;
+    private readonly IGenerateMakefileStringUseCase _generateMakefileStringUseCase;
     private readonly IWriteFileUseCase _writeFileUseCase;
 
     public GenerateMakefileUseCase(
         IFindCSharpProjectFilesUseCase findCSharpProjectFilesUseCase,
         IRemoveStringStartsWithUseCase removeStringStartsWithUseCase,
+        IGenerateMakefileStringUseCase generateMakefileStringUseCase,
         IWriteFileUseCase writeFileUseCase)
     {
         _findCSharpProjectFilesUseCase = findCSharpProjectFilesUseCase;
         _removeStringStartsWithUseCase = removeStringStartsWithUseCase;
+        _generateMakefileStringUseCase = generateMakefileStringUseCase;
         _writeFileUseCase = writeFileUseCase;
     }
 
@@ -34,7 +37,10 @@ public class GenerateMakefileUseCase : IGenerateMakefileUseCase
             startsWith: startsWith,
             cancellationToken);
 
-        var makefileString = GenerateMakefileString(directory, filesRelative);
+        var makefileString = await _generateMakefileStringUseCase.ExecuteAsync(
+            directory,
+            filesRelative,
+            cancellationToken);
 
         var makefilePath = directory + Path.DirectorySeparatorChar + name + MakefileExtension;
 
@@ -43,47 +49,4 @@ public class GenerateMakefileUseCase : IGenerateMakefileUseCase
             content: makefileString,
             cancellationToken);
     }
-
-    private static string GenerateMakefileString(
-        string directory,
-        IEnumerable<string> filesRelative)
-    {
-        var makefileObject = GenerateMakefileObject(directory, filesRelative);
-
-        var options = new JsonSerializerOptions { WriteIndented = true };
-
-        return JsonSerializer.Serialize(makefileObject, options);
-    }
-
-    private static MakefileObject GenerateMakefileObject(
-        string directory,
-        IEnumerable<string> filesRelative)
-    {
-        var cSharpFileObjects = filesRelative
-            .Select(fileRelative =>
-                new CSharpFileObject
-                {
-                    SolutionFolder = string.Empty,
-                    RelativePath = fileRelative
-                })
-            .ToList();
-
-        return new MakefileObject
-        {
-            RootDirectory = directory,
-            Projects = cSharpFileObjects
-        };
-    }
-}
-
-internal class MakefileObject
-{
-    public string RootDirectory { get; set; } = string.Empty;
-    public IEnumerable<CSharpFileObject> Projects { get; set; } = ArraySegment<CSharpFileObject>.Empty;
-}
-
-internal class CSharpFileObject
-{
-    public string SolutionFolder { get; set; } = string.Empty;
-    public string RelativePath { get; set; } = string.Empty;
 }

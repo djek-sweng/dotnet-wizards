@@ -10,3 +10,4 @@ global using Wizards.UseCases.Extensions;
 
 global using Wizards.SolutionGenerator.UseCases.Abstractions;
 global using Wizards.SolutionGenerator.UseCases.Filesystem;
+global using Wizards.SolutionGenerator.UseCases.Models;
