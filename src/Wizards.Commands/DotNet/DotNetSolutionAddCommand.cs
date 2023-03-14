@@ -14,11 +14,15 @@ public class DotNetSolutionAddCommand : IDotNetSolutionAddCommand
         string directory,
         string name,
         string reference,
+        string? solutionFolder = null,
         CancellationToken cancellationToken = default)
     {
-        // dotnet sln "Wizards.sln" add "Wizards.UseCases" --solution-folder "UseCases"
+        var command = string.IsNullOrWhiteSpace(solutionFolder)
+            ? $@"cd ""{directory}""; dotnet sln ""{name}.sln"" add ""{reference}"";"
+            : $@"cd ""{directory}""; dotnet sln ""{name}.sln"" add ""{reference}"" --solution-folder ""{solutionFolder}"";";
+
         await _runShellCommandUseCase.ExecuteAsync(
-            $@"cd ""{directory}""; dotnet sln ""{name}.sln"" add ""{reference}"";",
+            command,
             cancellationToken);
     }
 }

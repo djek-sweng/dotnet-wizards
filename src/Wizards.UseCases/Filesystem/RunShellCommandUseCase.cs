@@ -38,14 +38,14 @@ public class RunShellCommandUseCase : IRunShellCommandUseCase
     {
         var stringBuilder = new StringBuilder();
 
-        while (!process.StandardOutput.EndOfStream)
+        while (false == process.StandardOutput.EndOfStream)
         {
             stringBuilder.AppendLine(process.StandardOutput.ReadLine());
         }
 
         var message = stringBuilder.ToString();
 
-        if (!string.IsNullOrEmpty(message))
+        if (false == string.IsNullOrEmpty(message))
         {
             _logger.LogInformation("{Message}", message);
         }

@@ -1,42 +1,41 @@
 namespace Wizards.SolutionGenerator.UseCases.Filesystem;
 
-public class GenerateSolutionFromDirectoryUseCase : IGenerateSolutionFromDirectoryUseCase
+public class GenerateSolutionFromMakefileUseCase : IGenerateSolutionFromMakefileUseCase
 {
-    private readonly IFindCSharpProjectFilesUseCase _findCSharpProjectFilesUseCase;
-    private readonly IRemoveStringStartsWithUseCase _removeStringStartsWithUseCase;
+    private readonly IReadFileUseCase _readFileUseCase;
+    private readonly IGenerateMakefileModelUseCase _generateMakefileModelUseCase;
     private readonly IDotNetInfoCommand _dotNetInfoCommand;
     private readonly IDotNetNewSolutionCommand _dotNetNewSolutionCommand;
     private readonly IDotNetSolutionAddCommand _dotNetSolutionAddCommand;
 
-    public GenerateSolutionFromDirectoryUseCase(
-        IFindCSharpProjectFilesUseCase findCSharpProjectFilesUseCase,
-        IRemoveStringStartsWithUseCase removeStringStartsWithUseCase,
+    public GenerateSolutionFromMakefileUseCase(
+        IReadFileUseCase readFileUseCase,
+        IGenerateMakefileModelUseCase generateMakefileModelUseCase,
         IDotNetInfoCommand dotNetInfoCommand,
         IDotNetNewSolutionCommand dotNetNewSolutionCommand,
         IDotNetSolutionAddCommand dotNetSolutionAddCommand)
     {
-        _findCSharpProjectFilesUseCase = findCSharpProjectFilesUseCase;
-        _removeStringStartsWithUseCase = removeStringStartsWithUseCase;
+        _readFileUseCase = readFileUseCase;
+        _generateMakefileModelUseCase = generateMakefileModelUseCase;
         _dotNetInfoCommand = dotNetInfoCommand;
         _dotNetNewSolutionCommand = dotNetNewSolutionCommand;
         _dotNetSolutionAddCommand = dotNetSolutionAddCommand;
     }
 
     public async Task ExecuteAsync(
-        string directory,
+        string makefilePath,
         string name,
         CancellationToken cancellationToken = default)
     {
-        var filesFull = await _findCSharpProjectFilesUseCase.ExecuteAsync(
-            directory: directory,
+        var makefileString = await _readFileUseCase.ExecuteAsync(
+            makefilePath,
             cancellationToken);
 
-        var startsWith = directory;
-
-        var filesRelative = await _removeStringStartsWithUseCase.ExecuteAsync(
-            fulls: filesFull,
-            startsWith: startsWith,
+        var makefileModel = await _generateMakefileModelUseCase.ExecuteAsync(
+            makefileString,
             cancellationToken);
+
+        var directory = makefileModel.RootDirectory;
 
         await _dotNetInfoCommand.ExecuteAsync(
             directory: directory,
@@ -47,13 +46,13 @@ public class GenerateSolutionFromDirectoryUseCase : IGenerateSolutionFromDirecto
             name: name,
             cancellationToken);
 
-        foreach (var file in filesRelative)
+        foreach (var project in makefileModel.Projects)
         {
             await _dotNetSolutionAddCommand.ExecuteAsync(
                 directory: directory,
                 name: name,
-                reference: file,
-                solutionFolder: null,
+                reference: project.RelativePath,
+                solutionFolder: project.SolutionFolder,
                 cancellationToken);
         }
     }

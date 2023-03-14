@@ -4,13 +4,16 @@ public class MainTask : IMainTask
 {
     private readonly IGenerateMakefileUseCase _generateMakefileUseCase;
     private readonly IGenerateSolutionFromDirectoryUseCase _generateSolutionFromDirectoryUseCase;
+    private readonly IGenerateSolutionFromMakefileUseCase _generateSolutionFromMakefileUseCase;
 
     public MainTask(
         IGenerateMakefileUseCase generateMakefileUseCase,
-        IGenerateSolutionFromDirectoryUseCase generateSolutionFromDirectoryUseCase)
+        IGenerateSolutionFromDirectoryUseCase generateSolutionFromDirectoryUseCase,
+        IGenerateSolutionFromMakefileUseCase generateSolutionFromMakefileUseCase)
     {
         _generateMakefileUseCase = generateMakefileUseCase;
         _generateSolutionFromDirectoryUseCase = generateSolutionFromDirectoryUseCase;
+        _generateSolutionFromMakefileUseCase = generateSolutionFromMakefileUseCase;
     }
 
     public Task ExecuteAsync(
@@ -33,12 +36,20 @@ public class MainTask : IMainTask
                 directory: options.Source,
                 name: options.Name);
         }
-        else if (options.GenerateSolution)
+        else if (options.GenerateSolutionFromDirectory)
         {
             await _generateSolutionFromDirectoryUseCase.ExecuteAsync(
                 directory: options.Source,
                 name: options.Name);
         }
+        else if (options.GenerateSolutionFromMakefile)
+        {
+            await _generateSolutionFromMakefileUseCase.ExecuteAsync(
+                makefilePath: options.Source,
+                name: options.Name);
+        }
+
+        throw new NotSupportedException();
     }
 
     private Task HandleParseError(IEnumerable<Error> errors)

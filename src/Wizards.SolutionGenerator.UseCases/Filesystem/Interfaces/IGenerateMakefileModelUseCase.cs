@@ -6,4 +6,8 @@ public interface IGenerateMakefileModelUseCase
         string directory,
         IEnumerable<string> filesRelative,
         CancellationToken cancellationToken = default);
+
+    Task<MakefileModel> ExecuteAsync(
+        string makefileString,
+        CancellationToken cancellationToken = default);
 }

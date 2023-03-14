@@ -24,4 +24,20 @@ public class GenerateMakefileModelUseCase : IGenerateMakefileModelUseCase
 
         return Task.FromResult(makefileModel);
     }
+
+    public Task<MakefileModel> ExecuteAsync(
+        string makefileString,
+        CancellationToken cancellationToken = default)
+    {
+        var options = new JsonSerializerOptions { WriteIndented = true };
+
+        var makefileModel = JsonSerializer.Deserialize<MakefileModel>(makefileString, options);
+
+        if (makefileModel == null)
+        {
+            throw new NullReferenceException();
+        }
+
+        return Task.FromResult(makefileModel);
+    }
 }
