@@ -1,6 +1,6 @@
 namespace Wizards.SolutionGenerator.UseCases.Filesystem;
 
-public class GenerateSolutionUseCase : IGenerateSolutionUseCase
+public class GenerateSolutionFromDirectoryUseCase : IGenerateSolutionFromDirectoryUseCase
 {
     private readonly IFindCSharpProjectFilesUseCase _findCSharpProjectFilesUseCase;
     private readonly IRemoveStringStartsWithUseCase _removeStringStartsWithUseCase;
@@ -8,7 +8,7 @@ public class GenerateSolutionUseCase : IGenerateSolutionUseCase
     private readonly IDotNetNewSolutionCommand _dotNetNewSolutionCommand;
     private readonly IDotNetSolutionAddCommand _dotNetSolutionAddCommand;
 
-    public GenerateSolutionUseCase(
+    public GenerateSolutionFromDirectoryUseCase(
         IFindCSharpProjectFilesUseCase findCSharpProjectFilesUseCase,
         IRemoveStringStartsWithUseCase removeStringStartsWithUseCase,
         IDotNetInfoCommand dotNetInfoCommand,
@@ -27,18 +27,6 @@ public class GenerateSolutionUseCase : IGenerateSolutionUseCase
         string name,
         CancellationToken cancellationToken = default)
     {
-        //
-        //
-        //
-        #region Generate solution from makefile.
-
-        #endregion
-
-        //
-        //
-        //
-        #region Generate solution from directory.
-
         var filesFull = await _findCSharpProjectFilesUseCase.ExecuteAsync(
             directory: directory,
             cancellationToken);
@@ -67,7 +55,5 @@ public class GenerateSolutionUseCase : IGenerateSolutionUseCase
                 reference: file,
                 cancellationToken);
         }
-
-        #endregion
     }
 }

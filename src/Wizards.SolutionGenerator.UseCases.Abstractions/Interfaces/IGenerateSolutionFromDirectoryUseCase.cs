@@ -1,6 +1,6 @@
 namespace Wizards.SolutionGenerator.UseCases.Abstractions;
 
-public interface IGenerateSolutionUseCase
+public interface IGenerateSolutionFromDirectoryUseCase
 {
     Task ExecuteAsync(
         string directory,

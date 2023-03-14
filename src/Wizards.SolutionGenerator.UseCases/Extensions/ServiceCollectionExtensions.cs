@@ -12,7 +12,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IGenerateMakefileModelUseCase, GenerateMakefileModelUseCase>();
         services.AddScoped<IGenerateMakefileStringUseCase, GenerateMakefileStringUseCase>();
         services.AddScoped<IGenerateMakefileUseCase, GenerateMakefileUseCase>();
-        services.AddScoped<IGenerateSolutionUseCase, GenerateSolutionUseCase>();
+        services.AddScoped<IGenerateSolutionFromDirectoryUseCase, GenerateSolutionFromDirectoryUseCase>();
 
         return services;
     }

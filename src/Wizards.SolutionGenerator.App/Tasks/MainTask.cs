@@ -3,14 +3,14 @@ namespace Wizards.SolutionGenerator.App.Tasks;
 public class MainTask : IMainTask
 {
     private readonly IGenerateMakefileUseCase _generateMakefileUseCase;
-    private readonly IGenerateSolutionUseCase _generateSolutionUseCase;
+    private readonly IGenerateSolutionFromDirectoryUseCase _generateSolutionFromDirectoryUseCase;
 
     public MainTask(
         IGenerateMakefileUseCase generateMakefileUseCase,
-        IGenerateSolutionUseCase generateSolutionUseCase)
+        IGenerateSolutionFromDirectoryUseCase generateSolutionFromDirectoryUseCase)
     {
         _generateMakefileUseCase = generateMakefileUseCase;
-        _generateSolutionUseCase = generateSolutionUseCase;
+        _generateSolutionFromDirectoryUseCase = generateSolutionFromDirectoryUseCase;
     }
 
     public Task ExecuteAsync(
@@ -35,7 +35,7 @@ public class MainTask : IMainTask
         }
         else if (options.GenerateSolution)
         {
-            await _generateSolutionUseCase.ExecuteAsync(
+            await _generateSolutionFromDirectoryUseCase.ExecuteAsync(
                 directory: options.Source,
                 name: options.Name);
         }
