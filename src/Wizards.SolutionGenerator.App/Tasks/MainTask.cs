@@ -35,18 +35,23 @@ public class MainTask : IMainTask
             await _generateMakefileUseCase.ExecuteAsync(
                 directory: options.Source,
                 name: options.Name);
+            return;
         }
-        else if (options.GenerateSolutionFromDirectory)
+
+        if (options.GenerateSolutionFromDirectory)
         {
             await _generateSolutionFromDirectoryUseCase.ExecuteAsync(
                 directory: options.Source,
                 name: options.Name);
+            return;
         }
-        else if (options.GenerateSolutionFromMakefile)
+
+        if (options.GenerateSolutionFromMakefile)
         {
             await _generateSolutionFromMakefileUseCase.ExecuteAsync(
                 makefilePath: options.Source,
                 name: options.Name);
+            return;
         }
 
         throw new NotSupportedException();
