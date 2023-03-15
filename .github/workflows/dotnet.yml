@@ -1,0 +1,36 @@
+name: .NET
+
+on:
+  push:
+    branches:
+    - main
+#    - feature/**
+  pull_request:
+    branches:
+    - main
+#    - feature/**
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 7.0.x
+    - name: Restore dependencies
+      run: |
+        cd src/
+        dotnet restore Wizards.sln
+    - name: Build
+      run: |
+        cd src/
+        dotnet build Wizards.sln --no-restore
+    - name: Test
+      run: |
+        cd src/
+        dotnet test Wizards.sln --no-build --verbosity normal
