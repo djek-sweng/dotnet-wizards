@@ -358,3 +358,7 @@ MigrationBackup/
 
 # Wizard output files
 *.sln_mk.json
+
+# Output directories
+dist/
+out/
