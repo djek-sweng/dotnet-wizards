@@ -18,7 +18,8 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IDeserializeJsonUseCase, DeserializeJsonUseCase>();
 
         // String
-        services.AddScoped<IRemoveStringStartsWithUseCase, RemoveStringStartsWithUseCase>();
+        services.AddScoped<IRemoveStartsWithStringUseCase, RemoveStartsWithStringUseCase>();
+        services.AddScoped<IAppendDirectorySeparatorCharUseCase, AppendDirectorySeparatorCharCharUseCase>();
 
         return services;
     }

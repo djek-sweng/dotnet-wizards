@@ -2,19 +2,34 @@ namespace Wizards.SolutionGenerator.UseCases.Filesystem;
 
 public class GenerateMakefileModelUseCase : IGenerateMakefileModelUseCase
 {
+    private readonly IAppendDirectorySeparatorCharUseCase _appendDirectorySeparatorCharUseCase;
+    private readonly IRemoveStartsWithStringUseCase _removeStartsWithStringUseCase;
     private readonly IDeserializeJsonUseCase _deserializeJsonUseCase;
 
     public GenerateMakefileModelUseCase(
+        IAppendDirectorySeparatorCharUseCase appendDirectorySeparatorCharUseCase,
+        IRemoveStartsWithStringUseCase removeStartsWithStringUseCase,
         IDeserializeJsonUseCase deserializeJsonUseCase)
     {
+        _appendDirectorySeparatorCharUseCase = appendDirectorySeparatorCharUseCase;
+        _removeStartsWithStringUseCase = removeStartsWithStringUseCase;
         _deserializeJsonUseCase = deserializeJsonUseCase;
     }
 
-    public Task<MakefileModel> ExecuteAsync(
+    public async Task<MakefileModel> ExecuteAsync(
         string directory,
-        IEnumerable<string> filesRelative,
+        IEnumerable<string> projectFiles,
         CancellationToken cancellationToken = default)
     {
+        directory = await _appendDirectorySeparatorCharUseCase.ExecuteAsync(
+            directory: directory,
+            cancellationToken);
+
+        var filesRelative = await _removeStartsWithStringUseCase.ExecuteAsync(
+            fulls: projectFiles,
+            startsWith: directory,
+            cancellationToken);
+
         var cSharpProjectModels = filesRelative
             .Select(fileRelative =>
                 new CSharpProjectModel
@@ -29,7 +44,7 @@ public class GenerateMakefileModelUseCase : IGenerateMakefileModelUseCase
             Projects = cSharpProjectModels
         };
 
-        return Task.FromResult(makefileModel);
+        return makefileModel;
     }
 
     public async Task<MakefileModel> ExecuteAsync(

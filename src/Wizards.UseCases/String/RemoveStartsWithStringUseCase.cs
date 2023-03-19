@@ -1,6 +1,6 @@
 namespace Wizards.UseCases.String;
 
-public class RemoveStringStartsWithUseCase : IRemoveStringStartsWithUseCase
+public class RemoveStartsWithStringUseCase : IRemoveStartsWithStringUseCase
 {
     public Task<IEnumerable<string>> ExecuteAsync(
         IEnumerable<string> fulls,

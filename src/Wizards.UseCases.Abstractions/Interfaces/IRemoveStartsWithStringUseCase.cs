@@ -1,6 +1,6 @@
 namespace Wizards.UseCases.Abstractions;
 
-public interface IRemoveStringStartsWithUseCase
+public interface IRemoveStartsWithStringUseCase
 {
     Task<IEnumerable<string>> ExecuteAsync(
         IEnumerable<string> fulls,

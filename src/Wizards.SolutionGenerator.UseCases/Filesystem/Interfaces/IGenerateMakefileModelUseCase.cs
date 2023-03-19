@@ -4,7 +4,7 @@ public interface IGenerateMakefileModelUseCase
 {
     Task<MakefileModel> ExecuteAsync(
         string directory,
-        IEnumerable<string> filesRelative,
+        IEnumerable<string> projectFiles,
         CancellationToken cancellationToken = default);
 
     Task<MakefileModel> ExecuteAsync(

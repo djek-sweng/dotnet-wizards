@@ -36,7 +36,8 @@ public class GenerateSolutionFromMakefileUseCase : IGenerateSolutionFromMakefile
         string solutionName,
         CancellationToken cancellationToken = default)
     {
-        var workingDirectory = await _getCurrentDirectoryUseCase.Execute(cancellationToken);
+        var workingDirectory = await _getCurrentDirectoryUseCase.Execute(
+            cancellationToken);
 
         var makefileInfo = await _getFileInfoUseCase.Execute(
             file: makefilePath,
@@ -75,6 +76,8 @@ public class GenerateSolutionFromMakefileUseCase : IGenerateSolutionFromMakefile
                 cancellationToken);
         }
 
-        // todo: jump back to "workingDirectory"
+        await _jumpToDirectoryUseCase.Execute(
+            directory: workingDirectory,
+            cancellationToken);
     }
 }
