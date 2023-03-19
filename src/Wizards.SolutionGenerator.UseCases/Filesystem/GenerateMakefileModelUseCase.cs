@@ -39,12 +39,10 @@ public class GenerateMakefileModelUseCase : IGenerateMakefileModelUseCase
                 })
             .ToList();
 
-        var makefileModel = new MakefileModel
+        return new MakefileModel
         {
             Projects = cSharpProjectModels
         };
-
-        return makefileModel;
     }
 
     public async Task<MakefileModel> ExecuteAsync(
