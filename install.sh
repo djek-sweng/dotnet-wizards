@@ -7,14 +7,16 @@ BIN_DIR="$HOME/bin"
 EXE_DIR="$HOME/bin/dotnet-solution-generator-exe"
 EXE_LINK="$HOME/bin/dotnet-solution-generator"
 
-# Remove old executable.
+# Remove old executable and make directory for binaries.
 rm -rf "$EXE_DIR"
 rm -rf "$EXE_LINK"
 
 mkdir -p "$BIN_DIR"
 
+# Copy executable and dependencies.
 cp -r "dist/dotnet-solution-generator" "$EXE_DIR"
 
+# Link executable.
 ln -s "$EXE_DIR/Wizards.SolutionGenerator.Executable" "$EXE_LINK"
 
 # Uncomment the following line, if you want
