@@ -8,10 +8,15 @@ public static class ServiceCollectionExtensions
         services.AddWizardsCommands();
         services.AddWizardsUseCases();
 
-        // Filesystem
+        // Environment
+        services.AddScoped<IEnsureEnvironmentUseCase, EnsureEnvironmentUseCase>();
+
+        // Makefile
         services.AddScoped<IGenerateMakefileModelUseCase, GenerateMakefileModelUseCase>();
         services.AddScoped<IGenerateMakefileStringUseCase, GenerateMakefileStringUseCase>();
         services.AddScoped<IGenerateMakefileUseCase, GenerateMakefileUseCase>();
+
+        // Solution
         services.AddScoped<IGenerateSolutionFromDirectoryUseCase, GenerateSolutionFromDirectoryUseCase>();
         services.AddScoped<IGenerateSolutionFromMakefileUseCase, GenerateSolutionFromMakefileUseCase>();
 

@@ -10,11 +10,11 @@ public class DotNetInfoCommand : IDotNetInfoCommand
         _runShellCommandUseCase = runShellCommandUseCase;
     }
 
-    public async Task ExecuteAsync(
+    public async Task<string> ExecuteAsync(
         string directory,
         CancellationToken cancellationToken = default)
     {
-        await _runShellCommandUseCase.ExecuteAsync(
+        return await _runShellCommandUseCase.ExecuteAsync(
             command: $@"cd ""{directory}""; dotnet --info;",
             cancellationToken);
     }

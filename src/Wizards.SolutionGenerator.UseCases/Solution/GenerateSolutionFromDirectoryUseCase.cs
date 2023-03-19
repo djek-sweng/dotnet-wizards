@@ -5,7 +5,6 @@ public class GenerateSolutionFromDirectoryUseCase : IGenerateSolutionFromDirecto
     private readonly IFindCSharpProjectFilesUseCase _findCSharpProjectFilesUseCase;
     private readonly IAppendDirectorySeparatorCharUseCase _appendDirectorySeparatorCharUseCase;
     private readonly IRemoveStartsWithStringUseCase _removeStartsWithStringUseCase;
-    private readonly IDotNetInfoCommand _dotNetInfoCommand;
     private readonly IDotNetNewSolutionCommand _dotNetNewSolutionCommand;
     private readonly IDotNetSolutionAddCommand _dotNetSolutionAddCommand;
 
@@ -13,14 +12,12 @@ public class GenerateSolutionFromDirectoryUseCase : IGenerateSolutionFromDirecto
         IFindCSharpProjectFilesUseCase findCSharpProjectFilesUseCase,
         IAppendDirectorySeparatorCharUseCase appendDirectorySeparatorCharUseCase,
         IRemoveStartsWithStringUseCase removeStartsWithStringUseCase,
-        IDotNetInfoCommand dotNetInfoCommand,
         IDotNetNewSolutionCommand dotNetNewSolutionCommand,
         IDotNetSolutionAddCommand dotNetSolutionAddCommand)
     {
         _findCSharpProjectFilesUseCase = findCSharpProjectFilesUseCase;
         _appendDirectorySeparatorCharUseCase = appendDirectorySeparatorCharUseCase;
         _removeStartsWithStringUseCase = removeStartsWithStringUseCase;
-        _dotNetInfoCommand = dotNetInfoCommand;
         _dotNetNewSolutionCommand = dotNetNewSolutionCommand;
         _dotNetSolutionAddCommand = dotNetSolutionAddCommand;
     }
@@ -41,10 +38,6 @@ public class GenerateSolutionFromDirectoryUseCase : IGenerateSolutionFromDirecto
         var projectFilesRelative = await _removeStartsWithStringUseCase.ExecuteAsync(
             fulls: projectFiles,
             startsWith: directory,
-            cancellationToken);
-
-        await _dotNetInfoCommand.ExecuteAsync(
-            directory: directory,
             cancellationToken);
 
         await _dotNetNewSolutionCommand.ExecuteAsync(

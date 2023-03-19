@@ -1,8 +1,8 @@
 namespace Wizards.UseCases.Abstractions;
 
-public interface IGetFileInfoUseCase
+public interface IEnsureFileExistsUseCase
 {
-    Task<FileInfoModel> Execute(
+    Task<FileInfoModel> ExecuteAsync(
         string filePath,
         CancellationToken cancellationToken = default);
 }

@@ -2,15 +2,18 @@ namespace Wizards.SolutionGenerator.Executable.Tasks;
 
 public class MainTask : IMainTask
 {
+    private readonly IEnsureEnvironmentUseCase _ensureEnvironmentUseCase;
     private readonly IGenerateMakefileUseCase _generateMakefileUseCase;
     private readonly IGenerateSolutionFromDirectoryUseCase _generateSolutionFromDirectoryUseCase;
     private readonly IGenerateSolutionFromMakefileUseCase _generateSolutionFromMakefileUseCase;
 
     public MainTask(
+        IEnsureEnvironmentUseCase ensureEnvironmentUseCase,
         IGenerateMakefileUseCase generateMakefileUseCase,
         IGenerateSolutionFromDirectoryUseCase generateSolutionFromDirectoryUseCase,
         IGenerateSolutionFromMakefileUseCase generateSolutionFromMakefileUseCase)
     {
+        _ensureEnvironmentUseCase = ensureEnvironmentUseCase;
         _generateMakefileUseCase = generateMakefileUseCase;
         _generateSolutionFromDirectoryUseCase = generateSolutionFromDirectoryUseCase;
         _generateSolutionFromMakefileUseCase = generateSolutionFromMakefileUseCase;
@@ -29,6 +32,8 @@ public class MainTask : IMainTask
 
     private async Task RunOptions(CommandLineOptions options)
     {
+        await _ensureEnvironmentUseCase.ExecuteAsync();
+
         // Handle options.
         if (options.GenerateMakefile)
         {

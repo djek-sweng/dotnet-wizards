@@ -3,24 +3,20 @@ namespace Wizards.UseCases.Filesystem;
 public class GetFileInfoUseCase : IGetFileInfoUseCase
 {
     public Task<FileInfoModel> Execute(
-        string file,
+        string filePath,
         CancellationToken cancellationToken = default)
     {
-        var fileInfo = new FileInfo(file);
+        var fileInfo = new FileInfo(filePath);
 
         var directoryName = fileInfo.DirectoryName;
 
-        if (directoryName == null)
-        {
-            throw new NullReferenceException();
-        }
-
         var fileInfoModel = new FileInfoModel
         {
-            Directory = directoryName,
+            Directory = directoryName ?? string.Empty,
             FullName = fileInfo.FullName,
             Name = fileInfo.Name,
-            Extension = fileInfo.Extension
+            Extension = fileInfo.Extension,
+            Exists = fileInfo.Exists
         };
 
         return Task.FromResult(fileInfoModel);

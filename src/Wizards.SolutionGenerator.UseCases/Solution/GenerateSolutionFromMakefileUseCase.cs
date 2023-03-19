@@ -3,30 +3,27 @@ namespace Wizards.SolutionGenerator.UseCases.Solution;
 public class GenerateSolutionFromMakefileUseCase : IGenerateSolutionFromMakefileUseCase
 {
     private readonly IGetCurrentDirectoryUseCase _getCurrentDirectoryUseCase;
-    private readonly IGetFileInfoUseCase _getFileInfoUseCase;
+    private readonly IEnsureFileExistsUseCase _ensureFileExistsUseCase;
     private readonly IJumpToDirectoryUseCase _jumpToDirectoryUseCase;
     private readonly IReadFileUseCase _readFileUseCase;
     private readonly IGenerateMakefileModelUseCase _generateMakefileModelUseCase;
-    private readonly IDotNetInfoCommand _dotNetInfoCommand;
     private readonly IDotNetNewSolutionCommand _dotNetNewSolutionCommand;
     private readonly IDotNetSolutionAddCommand _dotNetSolutionAddCommand;
 
     public GenerateSolutionFromMakefileUseCase(
         IGetCurrentDirectoryUseCase getCurrentDirectoryUseCase,
-        IGetFileInfoUseCase getFileInfoUseCase,
+        IEnsureFileExistsUseCase ensureFileExistsUseCase,
         IJumpToDirectoryUseCase jumpToDirectoryUseCase,
         IReadFileUseCase readFileUseCase,
         IGenerateMakefileModelUseCase generateMakefileModelUseCase,
-        IDotNetInfoCommand dotNetInfoCommand,
         IDotNetNewSolutionCommand dotNetNewSolutionCommand,
         IDotNetSolutionAddCommand dotNetSolutionAddCommand)
     {
         _getCurrentDirectoryUseCase = getCurrentDirectoryUseCase;
-        _getFileInfoUseCase = getFileInfoUseCase;
+        _ensureFileExistsUseCase = ensureFileExistsUseCase;
         _jumpToDirectoryUseCase = jumpToDirectoryUseCase;
         _readFileUseCase = readFileUseCase;
         _generateMakefileModelUseCase = generateMakefileModelUseCase;
-        _dotNetInfoCommand = dotNetInfoCommand;
         _dotNetNewSolutionCommand = dotNetNewSolutionCommand;
         _dotNetSolutionAddCommand = dotNetSolutionAddCommand;
     }
@@ -39,8 +36,8 @@ public class GenerateSolutionFromMakefileUseCase : IGenerateSolutionFromMakefile
         var workingDirectory = await _getCurrentDirectoryUseCase.Execute(
             cancellationToken);
 
-        var makefileInfo = await _getFileInfoUseCase.Execute(
-            file: makefilePath,
+        var makefileInfo = await _ensureFileExistsUseCase.ExecuteAsync(
+            filePath: makefilePath,
             cancellationToken);
 
         var makefileDirectory = makefileInfo.Directory;
@@ -55,10 +52,6 @@ public class GenerateSolutionFromMakefileUseCase : IGenerateSolutionFromMakefile
 
         var makefileModel = await _generateMakefileModelUseCase.ExecuteAsync(
             makefileString,
-            cancellationToken);
-
-        await _dotNetInfoCommand.ExecuteAsync(
-            directory: makefileDirectory,
             cancellationToken);
 
         await _dotNetNewSolutionCommand.ExecuteAsync(

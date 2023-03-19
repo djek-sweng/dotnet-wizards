@@ -10,15 +10,15 @@ public class RunShellCommandUseCase : IRunShellCommandUseCase
         _logger = logger;
     }
 
-    public Task ExecuteAsync(
+    public Task<string> ExecuteAsync(
         string command,
         CancellationToken cancellationToken = default)
     {
         var process = RunProcess(command);
 
-        LogProcess(process);
+        var message = LogProcess(process);
 
-        return Task.CompletedTask;
+        return Task.FromResult(message);
     }
 
     private static Process RunProcess(string command)
@@ -34,7 +34,7 @@ public class RunShellCommandUseCase : IRunShellCommandUseCase
         return process;
     }
 
-    private void LogProcess(Process process)
+    private string LogProcess(Process process)
     {
         var stringBuilder = new StringBuilder();
 
@@ -49,5 +49,7 @@ public class RunShellCommandUseCase : IRunShellCommandUseCase
         {
             _logger.LogInformation("{Message}", message);
         }
+
+        return message;
     }
 }

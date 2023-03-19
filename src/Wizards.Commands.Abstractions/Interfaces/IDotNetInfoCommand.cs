@@ -2,7 +2,7 @@ namespace Wizards.Commands.Abstractions;
 
 public interface IDotNetInfoCommand
 {
-    Task ExecuteAsync(
+    Task<string> ExecuteAsync(
         string directory,
         CancellationToken cancellationToken = default);
 }

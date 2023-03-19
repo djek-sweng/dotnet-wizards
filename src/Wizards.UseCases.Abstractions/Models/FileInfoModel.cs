@@ -6,4 +6,5 @@ public class FileInfoModel
     public string FullName { get; set; } = string.Empty;
     public string Name { get; set; } = string.Empty;
     public string Extension { get; set; } = string.Empty;
+    public bool Exists { get; set; } = false;
 }

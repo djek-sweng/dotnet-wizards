@@ -20,7 +20,7 @@ public class DotNetNewSolutionCommand : IDotNetNewSolutionCommand
     {
         await _removeFileUseCase.ExecuteAsync(
             directory: directory,
-            name: name,
+            name: name + ".sln",
             cancellationToken);
 
         await _runShellCommandUseCase.ExecuteAsync(
