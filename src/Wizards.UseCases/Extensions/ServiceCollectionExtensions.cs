@@ -11,6 +11,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IReadFileUseCase, ReadFileUseCase>();
         services.AddScoped<IGetCurrentDirectoryUseCase, GetCurrentDirectoryUseCase>();
         services.AddScoped<IGetFileInfoUseCase, GetFileInfoUseCase>();
+        services.AddScoped<IJumpToDirectoryUseCase, JumpToDirectoryUseCase>();
 
         // String
         services.AddScoped<IRemoveStringStartsWithUseCase, RemoveStringStartsWithUseCase>();
