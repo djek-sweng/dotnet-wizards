@@ -2,12 +2,15 @@
 
 ./build.sh
 
+# Set directories and link.
 BIN_DIR="$HOME/bin"
 EXE_DIR="$HOME/bin/dotnet-solution-generator-exe"
 EXE_LINK="$HOME/bin/dotnet-solution-generator"
 
+# Remove old executable.
 rm -rf "$EXE_DIR"
 rm -rf "$EXE_LINK"
+
 mkdir -p "$BIN_DIR"
 
 cp -r "dist/dotnet-solution-generator" "$EXE_DIR"
