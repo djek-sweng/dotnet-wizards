@@ -4,6 +4,6 @@ public interface IGenerateMakefileStringUseCase
 {
     Task<string> ExecuteAsync(
         string directory,
-        IEnumerable<string> filesRelative,
+        IEnumerable<string> projectFiles,
         CancellationToken cancellationToken = default);
 }
