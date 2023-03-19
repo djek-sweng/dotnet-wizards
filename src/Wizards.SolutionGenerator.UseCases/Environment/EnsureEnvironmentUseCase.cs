@@ -13,13 +13,11 @@ public class EnsureEnvironmentUseCase : IEnsureEnvironmentUseCase
         _dotNetInfoCommand = dotNetInfoCommand;
     }
 
-    private const string ShellFilePath = "/bin/sh";
-
     public async Task ExecuteAsync(
         CancellationToken cancellationToken = default)
     {
         var shellFileInfo = await _getFileInfoUseCase.Execute(
-            filePath: ShellFilePath,
+            filePath: ShellHelper.FilePath,
             cancellationToken);
 
         if (false == shellFileInfo.Exists)

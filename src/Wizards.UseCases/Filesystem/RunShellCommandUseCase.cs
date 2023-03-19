@@ -25,7 +25,7 @@ public class RunShellCommandUseCase : IRunShellCommandUseCase
     {
         var process = new Process();
 
-        process.StartInfo.FileName = "/bin/sh";
+        process.StartInfo.FileName = ShellHelper.FilePath;
         process.StartInfo.Arguments = "-c \"" + command + "\"";
         process.StartInfo.UseShellExecute = false;
         process.StartInfo.RedirectStandardOutput = true;
