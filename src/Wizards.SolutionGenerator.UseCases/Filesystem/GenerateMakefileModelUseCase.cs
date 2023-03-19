@@ -18,7 +18,6 @@ public class GenerateMakefileModelUseCase : IGenerateMakefileModelUseCase
 
         var makefileModel = new MakefileModel
         {
-            RootDirectory = directory,
             Projects = cSharpProjectModels
         };
 
