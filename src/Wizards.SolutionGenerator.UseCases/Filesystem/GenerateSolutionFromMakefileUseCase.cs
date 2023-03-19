@@ -24,11 +24,11 @@ public class GenerateSolutionFromMakefileUseCase : IGenerateSolutionFromMakefile
 
     public async Task ExecuteAsync(
         string makefilePath,
-        string name,
+        string solutionName,
         CancellationToken cancellationToken = default)
     {
         var makefileString = await _readFileUseCase.ExecuteAsync(
-            makefilePath,
+            path: makefilePath,
             cancellationToken);
 
         var makefileModel = await _generateMakefileModelUseCase.ExecuteAsync(
@@ -43,14 +43,14 @@ public class GenerateSolutionFromMakefileUseCase : IGenerateSolutionFromMakefile
 
         await _dotNetNewSolutionCommand.ExecuteAsync(
             directory: directory,
-            name: name,
+            name: solutionName,
             cancellationToken);
 
         foreach (var project in makefileModel.Projects)
         {
             await _dotNetSolutionAddCommand.ExecuteAsync(
                 directory: directory,
-                name: name,
+                name: solutionName,
                 reference: project.RelativePath,
                 solutionFolder: project.SolutionFolder,
                 cancellationToken);

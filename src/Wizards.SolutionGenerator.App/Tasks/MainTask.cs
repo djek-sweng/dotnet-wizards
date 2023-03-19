@@ -34,7 +34,7 @@ public class MainTask : IMainTask
         {
             await _generateMakefileUseCase.ExecuteAsync(
                 directory: options.Source,
-                name: options.Name);
+                makefileName: options.Name);
             return;
         }
 
@@ -42,7 +42,7 @@ public class MainTask : IMainTask
         {
             await _generateSolutionFromDirectoryUseCase.ExecuteAsync(
                 directory: options.Source,
-                name: options.Name);
+                solutionName: options.Name);
             return;
         }
 
@@ -50,7 +50,7 @@ public class MainTask : IMainTask
         {
             await _generateSolutionFromMakefileUseCase.ExecuteAsync(
                 makefilePath: options.Source,
-                name: options.Name);
+                solutionName: options.Name);
             return;
         }
 

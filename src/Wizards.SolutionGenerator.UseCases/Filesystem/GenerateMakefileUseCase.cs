@@ -2,8 +2,6 @@ namespace Wizards.SolutionGenerator.UseCases.Filesystem;
 
 public class GenerateMakefileUseCase : IGenerateMakefileUseCase
 {
-    public const string MakefileExtension = ".sln_mk.json";
-
     private readonly IFindCSharpProjectFilesUseCase _findCSharpProjectFilesUseCase;
     private readonly IRemoveStringStartsWithUseCase _removeStringStartsWithUseCase;
     private readonly IGenerateMakefileStringUseCase _generateMakefileStringUseCase;
@@ -21,9 +19,11 @@ public class GenerateMakefileUseCase : IGenerateMakefileUseCase
         _writeFileUseCase = writeFileUseCase;
     }
 
+    private const string MakefileExtension = ".sln_mk.json";
+
     public async Task ExecuteAsync(
         string directory,
-        string name,
+        string makefileName,
         CancellationToken cancellationToken = default)
     {
         var filesFull = await _findCSharpProjectFilesUseCase.ExecuteAsync(
@@ -42,7 +42,7 @@ public class GenerateMakefileUseCase : IGenerateMakefileUseCase
             filesRelative,
             cancellationToken);
 
-        var makefilePath = directory + Path.DirectorySeparatorChar + name + MakefileExtension;
+        var makefilePath = directory + Path.DirectorySeparatorChar + makefileName + MakefileExtension;
 
         await _writeFileUseCase.ExecuteAsync(
             path: makefilePath,

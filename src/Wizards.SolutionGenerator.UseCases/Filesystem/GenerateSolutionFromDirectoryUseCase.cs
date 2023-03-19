@@ -24,7 +24,7 @@ public class GenerateSolutionFromDirectoryUseCase : IGenerateSolutionFromDirecto
 
     public async Task ExecuteAsync(
         string directory,
-        string name,
+        string solutionName,
         CancellationToken cancellationToken = default)
     {
         var filesFull = await _findCSharpProjectFilesUseCase.ExecuteAsync(
@@ -44,14 +44,14 @@ public class GenerateSolutionFromDirectoryUseCase : IGenerateSolutionFromDirecto
 
         await _dotNetNewSolutionCommand.ExecuteAsync(
             directory: directory,
-            name: name,
+            name: solutionName,
             cancellationToken);
 
         foreach (var file in filesRelative)
         {
             await _dotNetSolutionAddCommand.ExecuteAsync(
                 directory: directory,
-                name: name,
+                name: solutionName,
                 reference: file,
                 solutionFolder: null,
                 cancellationToken);

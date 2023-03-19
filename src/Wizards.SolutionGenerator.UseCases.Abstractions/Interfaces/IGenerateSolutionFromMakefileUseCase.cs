@@ -4,6 +4,6 @@ public interface IGenerateSolutionFromMakefileUseCase
 {
     Task ExecuteAsync(
         string makefilePath,
-        string name,
+        string solutionName,
         CancellationToken cancellationToken = default);
 }

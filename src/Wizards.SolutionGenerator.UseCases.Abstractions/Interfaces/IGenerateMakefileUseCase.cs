@@ -4,6 +4,6 @@ public interface IGenerateMakefileUseCase
 {
     Task ExecuteAsync(
         string directory,
-        string name,
+        string makefileName,
         CancellationToken cancellationToken = default);
 }

@@ -4,6 +4,6 @@ public interface IGenerateSolutionFromDirectoryUseCase
 {
     Task ExecuteAsync(
         string directory,
-        string name,
+        string solutionName,
         CancellationToken cancellationToken = default);
 }
