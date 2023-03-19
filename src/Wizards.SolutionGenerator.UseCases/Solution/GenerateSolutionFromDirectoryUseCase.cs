@@ -1,4 +1,4 @@
-namespace Wizards.SolutionGenerator.UseCases.Filesystem;
+namespace Wizards.SolutionGenerator.UseCases.Solution;
 
 public class GenerateSolutionFromDirectoryUseCase : IGenerateSolutionFromDirectoryUseCase
 {

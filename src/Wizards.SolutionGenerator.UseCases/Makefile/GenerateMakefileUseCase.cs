@@ -1,4 +1,4 @@
-namespace Wizards.SolutionGenerator.UseCases.Filesystem;
+namespace Wizards.SolutionGenerator.UseCases.Makefile;
 
 public class GenerateMakefileUseCase : IGenerateMakefileUseCase
 {
