@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wizards.UseCases", "Wizards.UseCases\Wizards.UseCases.csproj", "{F1EB923B-7DA0-4351-86F8-31C767EFC2B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wizards.SolutionGenerator.App", "Wizards.SolutionGenerator.App\Wizards.SolutionGenerator.App.csproj", "{DE2CE1DF-E1F6-44E6-8208-1D5F036CA850}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wizards.SolutionGenerator.Executable", "Wizards.SolutionGenerator.Executable\Wizards.SolutionGenerator.Executable.csproj", "{DE2CE1DF-E1F6-44E6-8208-1D5F036CA850}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wizards.UseCases.Abstractions", "Wizards.UseCases.Abstractions\Wizards.UseCases.Abstractions.csproj", "{2581082F-1D59-4182-9D25-123043A5DB5A}"
 EndProject
