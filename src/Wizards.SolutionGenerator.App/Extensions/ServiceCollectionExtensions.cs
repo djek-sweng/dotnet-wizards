@@ -1,4 +1,4 @@
-﻿namespace Wizards.SolutionGenerator.App.Extensions;
+﻿namespace Wizards.SolutionGenerator.Executable.Extensions;
 
 public static class ServiceCollectionExtensions
 {

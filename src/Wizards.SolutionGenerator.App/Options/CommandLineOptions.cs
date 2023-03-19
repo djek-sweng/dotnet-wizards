@@ -1,4 +1,4 @@
-namespace Wizards.SolutionGenerator.App.Options;
+namespace Wizards.SolutionGenerator.Executable.Options;
 
 public class CommandLineOptions
 {

@@ -1,4 +1,4 @@
-﻿namespace Wizards.SolutionGenerator.App;
+﻿namespace Wizards.SolutionGenerator.Executable;
 
 internal static class Program
 {

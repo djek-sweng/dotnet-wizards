@@ -1,4 +1,4 @@
-namespace Wizards.SolutionGenerator.App.Tasks;
+namespace Wizards.SolutionGenerator.Executable.Tasks;
 
 public class MainTask : IMainTask
 {
