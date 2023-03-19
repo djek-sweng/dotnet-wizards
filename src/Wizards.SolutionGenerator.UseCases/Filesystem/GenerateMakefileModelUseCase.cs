@@ -2,6 +2,14 @@ namespace Wizards.SolutionGenerator.UseCases.Filesystem;
 
 public class GenerateMakefileModelUseCase : IGenerateMakefileModelUseCase
 {
+    private readonly IDeserializeJsonUseCase _deserializeJsonUseCase;
+
+    public GenerateMakefileModelUseCase(
+        IDeserializeJsonUseCase deserializeJsonUseCase)
+    {
+        _deserializeJsonUseCase = deserializeJsonUseCase;
+    }
+
     public Task<MakefileModel> ExecuteAsync(
         string directory,
         IEnumerable<string> filesRelative,
@@ -24,19 +32,19 @@ public class GenerateMakefileModelUseCase : IGenerateMakefileModelUseCase
         return Task.FromResult(makefileModel);
     }
 
-    public Task<MakefileModel> ExecuteAsync(
+    public async Task<MakefileModel> ExecuteAsync(
         string makefileString,
         CancellationToken cancellationToken = default)
     {
-        var options = new JsonSerializerOptions { WriteIndented = true };
-
-        var makefileModel = JsonSerializer.Deserialize<MakefileModel>(makefileString, options);
+        var makefileModel = await _deserializeJsonUseCase.ExecuteAsync<MakefileModel>(
+            jsonString: makefileString,
+            cancellationToken);
 
         if (makefileModel == null)
         {
             throw new NullReferenceException();
         }
 
-        return Task.FromResult(makefileModel);
+        return makefileModel;
     }
 }

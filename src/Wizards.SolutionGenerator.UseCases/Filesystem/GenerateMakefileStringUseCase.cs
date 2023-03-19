@@ -4,13 +4,16 @@ public class GenerateMakefileStringUseCase : IGenerateMakefileStringUseCase
 {
     private readonly IGenerateMakefileModelUseCase _generateMakefileModelUseCase;
     private readonly IRemoveStringStartsWithUseCase _removeStringStartsWithUseCase;
+    private readonly ISerializeJsonUseCase _serializeJsonUseCase;
 
     public GenerateMakefileStringUseCase(
         IGenerateMakefileModelUseCase generateMakefileModelUseCase,
-        IRemoveStringStartsWithUseCase removeStringStartsWithUseCase)
+        IRemoveStringStartsWithUseCase removeStringStartsWithUseCase,
+        ISerializeJsonUseCase serializeJsonUseCase)
     {
         _generateMakefileModelUseCase = generateMakefileModelUseCase;
         _removeStringStartsWithUseCase = removeStringStartsWithUseCase;
+        _serializeJsonUseCase = serializeJsonUseCase;
     }
 
     public async Task<string> ExecuteAsync(
@@ -33,8 +36,8 @@ public class GenerateMakefileStringUseCase : IGenerateMakefileStringUseCase
             filesRelative,
             cancellationToken);
 
-        var options = new JsonSerializerOptions { WriteIndented = true };
-
-        return JsonSerializer.Serialize(makefileModel, options);
+        return await _serializeJsonUseCase.ExecuteAsync(
+            jsonObject: makefileModel,
+            cancellationToken);
     }
 }
