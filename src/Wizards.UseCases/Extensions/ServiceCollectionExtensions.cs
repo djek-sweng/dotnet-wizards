@@ -13,6 +13,10 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IGetFileInfoUseCase, GetFileInfoUseCase>();
         services.AddScoped<IJumpToDirectoryUseCase, JumpToDirectoryUseCase>();
 
+        // Json
+        services.AddScoped<ISerializeJsonUseCase, SerializeJsonUseCase>();
+        services.AddScoped<IDeserializeJsonUseCase, DeserializeJsonUseCase>();
+
         // String
         services.AddScoped<IRemoveStringStartsWithUseCase, RemoveStringStartsWithUseCase>();
 
