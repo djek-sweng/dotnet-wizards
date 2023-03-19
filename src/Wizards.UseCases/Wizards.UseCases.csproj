@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <ProjectReference Include="..\Wizards.Miscellaneous\Wizards.Miscellaneous.csproj" />
     <ProjectReference Include="..\Wizards.UseCases.Abstractions\Wizards.UseCases.Abstractions.csproj" />
   </ItemGroup>
 

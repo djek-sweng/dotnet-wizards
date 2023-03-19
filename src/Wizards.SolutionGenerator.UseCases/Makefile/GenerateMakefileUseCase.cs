@@ -16,8 +16,6 @@ public class GenerateMakefileUseCase : IGenerateMakefileUseCase
         _writeFileUseCase = writeFileUseCase;
     }
 
-    private const string MakefileExtension = ".sln_mk.json";
-
     public async Task ExecuteAsync(
         string directory,
         string makefileName,
@@ -32,7 +30,7 @@ public class GenerateMakefileUseCase : IGenerateMakefileUseCase
             projectFiles: projectFiles,
             cancellationToken);
 
-        var makefilePath = directory + Path.DirectorySeparatorChar + makefileName + MakefileExtension;
+        var makefilePath = MakefileHelper.GetFullName(directory, makefileName);
 
         await _writeFileUseCase.ExecuteAsync(
             path: makefilePath,

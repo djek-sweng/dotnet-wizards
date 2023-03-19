@@ -18,9 +18,11 @@ public class DotNetNewSolutionCommand : IDotNetNewSolutionCommand
         string name,
         CancellationToken cancellationToken = default)
     {
+        var fileName = name + SolutionHelper.FileExtension;
+
         await _removeFileUseCase.ExecuteAsync(
             directory: directory,
-            name: name + ".sln",
+            name: fileName,
             cancellationToken);
 
         await _runShellCommandUseCase.ExecuteAsync(

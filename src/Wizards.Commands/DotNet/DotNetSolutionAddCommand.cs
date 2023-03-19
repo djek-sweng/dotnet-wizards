@@ -17,9 +17,11 @@ public class DotNetSolutionAddCommand : IDotNetSolutionAddCommand
         string? solutionFolder = null,
         CancellationToken cancellationToken = default)
     {
+        var fileName = name + SolutionHelper.FileExtension;
+
         var command = string.IsNullOrWhiteSpace(solutionFolder)
-            ? $@"cd ""{directory}""; dotnet sln ""{name}.sln"" add ""{reference}"";"
-            : $@"cd ""{directory}""; dotnet sln ""{name}.sln"" add ""{reference}"" --solution-folder ""{solutionFolder}"";";
+            ? $@"cd ""{directory}""; dotnet sln ""{fileName}"" add ""{reference}"";"
+            : $@"cd ""{directory}""; dotnet sln ""{fileName}"" add ""{reference}"" --solution-folder ""{solutionFolder}"";";
 
         await _runShellCommandUseCase.ExecuteAsync(
             command,

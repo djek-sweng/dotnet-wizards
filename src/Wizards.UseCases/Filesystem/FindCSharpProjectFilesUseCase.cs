@@ -8,9 +8,11 @@ public class FindCSharpProjectFilesUseCase : IFindCSharpProjectFilesUseCase
     {
         var files = Directory.GetFiles(
             path: directory,
-            searchPattern: "*.csproj",
+            searchPattern: CSharpProjectHelper.FileSearchPattern,
             SearchOption.AllDirectories);
 
-        return Task.FromResult<IEnumerable<string>>(files);
+        var orderedFiles = files.Order();
+
+        return Task.FromResult<IEnumerable<string>>(orderedFiles);
     }
 }
