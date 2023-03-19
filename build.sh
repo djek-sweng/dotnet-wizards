@@ -15,7 +15,7 @@ dotnet test src/Wizards.sln \
     --no-build \
     --verbosity normal
 
-dotnet publish src/Wizards.SolutionGenerator.App/Wizards.SolutionGenerator.App.csproj \
+dotnet publish src/Wizards.SolutionGenerator.Executable/Wizards.SolutionGenerator.Executable.csproj \
     --no-restore \
     --no-build \
     --configuration Release \
