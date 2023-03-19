@@ -2,11 +2,14 @@ namespace Wizards.Commands.DotNet;
 
 public class DotNetNewSolutionCommand : IDotNetNewSolutionCommand
 {
+    private readonly IRemoveFileUseCase _removeFileUseCase;
     private readonly IRunShellCommandUseCase _runShellCommandUseCase;
 
     public DotNetNewSolutionCommand(
+        IRemoveFileUseCase removeFileUseCase,
         IRunShellCommandUseCase runShellCommandUseCase)
     {
+        _removeFileUseCase = removeFileUseCase;
         _runShellCommandUseCase = runShellCommandUseCase;
     }
 
@@ -15,8 +18,9 @@ public class DotNetNewSolutionCommand : IDotNetNewSolutionCommand
         string name,
         CancellationToken cancellationToken = default)
     {
-        await _runShellCommandUseCase.ExecuteAsync(
-            command: $@"cd ""{directory}""; rm -rf ""{name}.sln;""",
+        await _removeFileUseCase.ExecuteAsync(
+            directory: directory,
+            name: name,
             cancellationToken);
 
         await _runShellCommandUseCase.ExecuteAsync(
