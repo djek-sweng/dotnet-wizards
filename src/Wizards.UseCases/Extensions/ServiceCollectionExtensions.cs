@@ -9,6 +9,8 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IRunShellCommandUseCase, RunShellCommandUseCase>();
         services.AddScoped<IWriteFileUseCase, WriteFileUseCase>();
         services.AddScoped<IReadFileUseCase, ReadFileUseCase>();
+        services.AddScoped<IGetCurrentDirectoryUseCase, GetCurrentDirectoryUseCase>();
+        services.AddScoped<IGetFileInfoUseCase, GetFileInfoUseCase>();
 
         // String
         services.AddScoped<IRemoveStringStartsWithUseCase, RemoveStringStartsWithUseCase>();
