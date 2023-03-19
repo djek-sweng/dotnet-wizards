@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wizards.SolutionGenerator.U
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wizards.UseCases", "Wizards.UseCases\Wizards.UseCases.csproj", "{F6D0CC93-1C5A-45F7-ACA1-32D7BDE55A9B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wizards.Miscellaneous", "Wizards.Miscellaneous\Wizards.Miscellaneous.csproj", "{D55D96A2-3F3F-4D08-92D4-BF49359E352A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,6 +62,10 @@ Global
 		{F6D0CC93-1C5A-45F7-ACA1-32D7BDE55A9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6D0CC93-1C5A-45F7-ACA1-32D7BDE55A9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6D0CC93-1C5A-45F7-ACA1-32D7BDE55A9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D55D96A2-3F3F-4D08-92D4-BF49359E352A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D55D96A2-3F3F-4D08-92D4-BF49359E352A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D55D96A2-3F3F-4D08-92D4-BF49359E352A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D55D96A2-3F3F-4D08-92D4-BF49359E352A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{D552DFCC-222D-494A-B684-8679D15A4C29} = {A007F3A9-0C96-4741-B9F0-22DF6873FC88}
