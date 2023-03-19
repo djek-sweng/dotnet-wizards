@@ -71,7 +71,7 @@ public class GenerateSolutionFromMakefileUseCase : IGenerateSolutionFromMakefile
             await _dotNetSolutionAddCommand.ExecuteAsync(
                 directory: makefileDirectory,
                 name: solutionName,
-                reference: project.RelativePath,
+                reference: project.Reference,
                 solutionFolder: project.SolutionFolder,
                 cancellationToken);
         }

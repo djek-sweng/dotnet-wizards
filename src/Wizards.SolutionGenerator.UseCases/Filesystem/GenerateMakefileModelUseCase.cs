@@ -25,17 +25,17 @@ public class GenerateMakefileModelUseCase : IGenerateMakefileModelUseCase
             directory: directory,
             cancellationToken);
 
-        var filesRelative = await _removeStartsWithStringUseCase.ExecuteAsync(
+        var projectReferences = await _removeStartsWithStringUseCase.ExecuteAsync(
             fulls: projectFiles,
             startsWith: directory,
             cancellationToken);
 
-        var cSharpProjectModels = filesRelative
-            .Select(fileRelative =>
+        var cSharpProjectModels = projectReferences
+            .Select(reference =>
                 new CSharpProjectModel
                 {
                     SolutionFolder = string.Empty,
-                    RelativePath = fileRelative
+                    Reference = reference
                 })
             .ToList();
 
