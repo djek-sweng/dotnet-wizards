@@ -12,7 +12,7 @@ public class GetFileInfoUseCase : IGetFileInfoUseCase
 
         if (directoryName == null)
         {
-            throw new NullReferenceException(nameof(directoryName));
+            throw new NullReferenceException();
         }
 
         var fileInfoModel = new FileInfoModel
