@@ -2,7 +2,7 @@ namespace Wizards.UseCases.Abstractions;
 
 public interface IGetFileInfoUseCase
 {
-    Task<FileInfo> Execute(
+    Task<FileInfoModel> Execute(
         string file,
         CancellationToken cancellationToken = default);
 }
