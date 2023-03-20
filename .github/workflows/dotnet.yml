@@ -10,8 +10,6 @@ on:
     - main
 #    - feature/**
   workflow_dispatch:
-    - main
-    - feature/**
 
 jobs:
   build:
