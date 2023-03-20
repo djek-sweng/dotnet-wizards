@@ -10,4 +10,4 @@ You need the following tools installed on your machine:
 Use shell script [`install.sh`](install.sh) to install the .NET wizards on your machine.
 
 #### **Guides**
-* [.NET solution generator guide](./doc/solution-generator-guide.md)
+* [.NET solution generator guide](./doc/dotnet-solution-generator-guide.md)
