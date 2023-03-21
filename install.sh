@@ -19,12 +19,12 @@ cp -r "dist/dotnet-solution-generator" "$EXE_DIR"
 # Link executable.
 ln -s "$EXE_DIR/Wizards.SolutionGenerator.Executable" "$EXE_LINK"
 
-# Uncomment the following line, if you want
-#   to check which shell you are using.
+# Uncomment the following line, if you want to
+#   check which shell you are using.
 # echo $0
 
-# Uncomment one of the following lines, if you want
-#   to add the executable binary to your path.
+# Uncomment one of the following lines, if you want to
+#   add the executable binary to your path.
 # SHRC="$HOME/.zshrc"
 # SHRC="$HOME/.kshrc"
 # SHRC="$HOME/.bashrc"
