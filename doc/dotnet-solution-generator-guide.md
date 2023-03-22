@@ -9,7 +9,7 @@ This wizard generates .NET solution files according to your project structure.
     $ dotnet-solution-generator \
         --generate-solution-from-directory \
         --source "." \
-        --name "MySolution"
+        --name "MySolutionTest"
 
 #### **Generate solution from makefile**
 First, generate makefile.
@@ -17,15 +17,15 @@ First, generate makefile.
     $ dotnet-solution-generator \
         --generate-makefile \
         --source "." \
-        --name "MySolution"
+        --name "MySolutionTest"
 
 Second, edit makefile to your needs.
 
-    $ code "./MySolution.sln_mk.json"
+    $ code "./MySolutionTest.sln_mk.json"
 
 Third, generate solution from makefile.
 
     $ dotnet-solution-generator \
         --generate-solution-from-makefile \
-        --source "./MySolution.sln_mk.json" \
-        --name "MySolution"
+        --source "./MySolutionTest.sln_mk.json" \
+        --name "MySolutionTest"
