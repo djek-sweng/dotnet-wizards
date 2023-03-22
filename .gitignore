@@ -348,3 +348,18 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
+# IDEs
+.vscode/
+.idea/
+
+# macOS
+.DS_Store
+
+# Wizard output files
+*.sln_mk.json
+*[Tt]est.sln
+
+# Output directories
+dist/
+out/

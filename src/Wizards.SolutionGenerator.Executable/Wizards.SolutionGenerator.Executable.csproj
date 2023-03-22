@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Wizards.SolutionGenerator.UseCases\Wizards.SolutionGenerator.UseCases.csproj" />
+    <ProjectReference Include="..\Wizards.UseCases\Wizards.UseCases.csproj" />
+  </ItemGroup>
+
+  <Target Name="NetClean" BeforeTargets="Clean">
+    <RemoveDir Directories="bin" />
+    <RemoveDir Directories="obj" />
+  </Target>
+
+</Project>
