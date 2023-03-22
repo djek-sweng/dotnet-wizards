@@ -41,13 +41,14 @@ public class GenerateSolutionFromMakefileUseCase : IGenerateSolutionFromMakefile
             cancellationToken);
 
         var makefileDirectory = makefileInfo.Directory;
+        var makefileName = makefileInfo.Name;
 
         await _jumpToDirectoryUseCase.Execute(
             directory: makefileDirectory,
             cancellationToken);
 
         var makefileString = await _readFileUseCase.ExecuteAsync(
-            path: makefilePath,
+            path: makefileName,
             cancellationToken);
 
         var makefileModel = await _generateMakefileModelUseCase.ExecuteAsync(
