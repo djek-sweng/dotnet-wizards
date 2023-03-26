@@ -34,6 +34,7 @@ public class GenerateMakefileModelUseCase : IGenerateMakefileModelUseCase
             .Select(reference =>
                 new CSharpProjectModel
                 {
+                    IsAdded = true,
                     SolutionFolder = string.Empty,
                     Reference = reference
                 })

@@ -1,0 +1,55 @@
+{
+    // You can configure Visual Studio Code through its various settings.
+    // https://code.visualstudio.com/docs/getstarted/settings
+    //
+    // general
+    //
+    "window.zoomLevel": 0,
+    //
+    // files
+    //
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 500,
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "files.watcherExclude": {
+        "**/bin/**": true,
+        "**/obj/**": true,
+        "**/out/**": true,
+        "**/dist/**": true
+    },
+    //
+    // search
+    //
+    "search.exclude": {
+        "**/bin/**": true,
+        "**/obj/**": true,
+        "**/out/**": true,
+        "**/dist/**": true
+    },
+    //
+    // editor
+    //
+    "editor.acceptSuggestionOnEnter": "on",
+    "editor.semanticHighlighting.enabled": true,
+    "editor.indentSize": 4,
+    "editor.formatOnType": true,
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "modificationsIfAvailable",
+    //
+    // csharp
+    //
+    "csharp.format.enable": true,
+    "csharp.semanticHighlighting.enabled": true,
+    "csharp.showOmnisharpLogOnError": true,
+    "[csharp]": {
+        "editor.indentSize": 4,
+        "editor.showUnused": true
+    },
+    //
+    // omnisharp
+    //
+    "omnisharp.organizeImportsOnFormat": true,
+    "omnisharp.enableRoslynAnalyzers": true
+}
