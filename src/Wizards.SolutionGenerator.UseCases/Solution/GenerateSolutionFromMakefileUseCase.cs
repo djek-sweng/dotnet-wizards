@@ -62,6 +62,11 @@ public class GenerateSolutionFromMakefileUseCase : IGenerateSolutionFromMakefile
 
         foreach (var project in makefileModel.Projects)
         {
+            if (false == project.IsAdded)
+            {
+                continue;
+            }
+
             await _dotNetSolutionAddCommand.ExecuteAsync(
                 directory: makefileDirectory,
                 name: solutionName,
