@@ -350,7 +350,7 @@ MigrationBackup/
 .ionide/
 
 # IDEs
-.vscode/
+#.vscode/
 .idea/
 
 # macOS

@@ -1,0 +1,89 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "sg --help",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-solution-generator",
+            "program": "${workspaceFolder}/src/Wizards.SolutionGenerator.Executable/bin/Debug/net7.0/Wizards.SolutionGenerator.Executable.dll",
+            "args": [
+                "--help"
+            ],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+            "console": "internalConsole"
+        },
+        {
+            "name": "sg --generate-makefile",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-solution-generator",
+            "program": "${workspaceFolder}/src/Wizards.SolutionGenerator.Executable/bin/Debug/net7.0/Wizards.SolutionGenerator.Executable.dll",
+            "args": [
+                "--generate-makefile",
+                "--source",
+                "./src",
+                "--name",
+                "MySolutionTest"
+            ],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+            "console": "internalConsole"
+        },
+        {
+            "name": "sg --generate-solution-from-makefile",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-solution-generator",
+            "program": "${workspaceFolder}/src/Wizards.SolutionGenerator.Executable/bin/Debug/net7.0/Wizards.SolutionGenerator.Executable.dll",
+            "args": [
+                "--generate-solution-from-makefile",
+                "--source",
+                "./src/MySolutionTest.sln_mk.json",
+                "--name",
+                "MySolutionTest"
+            ],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+            "console": "internalConsole"
+        },
+        {
+            "name": "sg --generate-solution-from-makefile",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-solution-generator",
+            "program": "${workspaceFolder}/src/Wizards.SolutionGenerator.Executable/bin/Debug/net7.0/Wizards.SolutionGenerator.Executable.dll",
+            "args": [
+                "--generate-solution-from-makefile",
+                "--source",
+                "./src/MySolutionTest.sln_mk.json",
+                "--name",
+                "MySolutionTest"
+            ],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+            "console": "internalConsole"
+        },
+        {
+            "name": "sg --generate-solution-from-directory",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-solution-generator",
+            "program": "${workspaceFolder}/src/Wizards.SolutionGenerator.Executable/bin/Debug/net7.0/Wizards.SolutionGenerator.Executable.dll",
+            "args": [
+                "--generate-solution-from-directory",
+                "--source",
+                "./src",
+                "--name",
+                "MySolutionTest"
+            ],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+            "console": "internalConsole"
+        }
+    ]
+}
