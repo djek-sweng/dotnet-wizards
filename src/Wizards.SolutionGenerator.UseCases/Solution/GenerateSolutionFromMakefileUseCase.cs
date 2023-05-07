@@ -4,7 +4,7 @@ public class GenerateSolutionFromMakefileUseCase : IGenerateSolutionFromMakefile
 {
     private readonly IGetCurrentDirectoryUseCase _getCurrentDirectoryUseCase;
     private readonly IEnsureFileExistsUseCase _ensureFileExistsUseCase;
-    private readonly IJumpToDirectoryUseCase _jumpToDirectoryUseCase;
+    private readonly IChangeDirectoryUseCase _changeDirectoryUseCase;
     private readonly IReadFileUseCase _readFileUseCase;
     private readonly IGenerateMakefileModelUseCase _generateMakefileModelUseCase;
     private readonly IDotNetNewSolutionCommand _dotNetNewSolutionCommand;
@@ -13,7 +13,7 @@ public class GenerateSolutionFromMakefileUseCase : IGenerateSolutionFromMakefile
     public GenerateSolutionFromMakefileUseCase(
         IGetCurrentDirectoryUseCase getCurrentDirectoryUseCase,
         IEnsureFileExistsUseCase ensureFileExistsUseCase,
-        IJumpToDirectoryUseCase jumpToDirectoryUseCase,
+        IChangeDirectoryUseCase changeDirectoryUseCase,
         IReadFileUseCase readFileUseCase,
         IGenerateMakefileModelUseCase generateMakefileModelUseCase,
         IDotNetNewSolutionCommand dotNetNewSolutionCommand,
@@ -21,7 +21,7 @@ public class GenerateSolutionFromMakefileUseCase : IGenerateSolutionFromMakefile
     {
         _getCurrentDirectoryUseCase = getCurrentDirectoryUseCase;
         _ensureFileExistsUseCase = ensureFileExistsUseCase;
-        _jumpToDirectoryUseCase = jumpToDirectoryUseCase;
+        _changeDirectoryUseCase = changeDirectoryUseCase;
         _readFileUseCase = readFileUseCase;
         _generateMakefileModelUseCase = generateMakefileModelUseCase;
         _dotNetNewSolutionCommand = dotNetNewSolutionCommand;
@@ -43,7 +43,7 @@ public class GenerateSolutionFromMakefileUseCase : IGenerateSolutionFromMakefile
         var makefileDirectory = makefileInfo.Directory;
         var makefileName = makefileInfo.Name;
 
-        await _jumpToDirectoryUseCase.Execute(
+        await _changeDirectoryUseCase.Execute(
             directory: makefileDirectory,
             cancellationToken);
 
@@ -75,7 +75,7 @@ public class GenerateSolutionFromMakefileUseCase : IGenerateSolutionFromMakefile
                 cancellationToken);
         }
 
-        await _jumpToDirectoryUseCase.Execute(
+        await _changeDirectoryUseCase.Execute(
             directory: workingDirectory,
             cancellationToken);
     }

@@ -1,6 +1,6 @@
 namespace Wizards.UseCases.Filesystem;
 
-public class JumpToDirectoryUseCase : IJumpToDirectoryUseCase
+public class ChangeDirectoryUseCase : IChangeDirectoryUseCase
 {
     public Task Execute(
         string directory,
