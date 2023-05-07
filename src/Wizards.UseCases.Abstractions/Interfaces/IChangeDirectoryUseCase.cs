@@ -1,6 +1,6 @@
 namespace Wizards.UseCases.Abstractions;
 
-public interface IJumpToDirectoryUseCase
+public interface IChangeDirectoryUseCase
 {
     Task Execute(
         string directory,
