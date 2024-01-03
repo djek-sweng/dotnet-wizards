@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="CommandLineParser" Version="[2.9.1, )"/>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Wizards.SolutionGenerator.UseCases\Wizards.SolutionGenerator.UseCases.csproj" />
     <ProjectReference Include="..\Wizards.UseCases\Wizards.UseCases.csproj" />
   </ItemGroup>

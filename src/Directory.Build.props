@@ -1,11 +1,19 @@
 <Project>
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <LangVersion>11.0</LangVersion>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>12.0</LangVersion>
     <Nullable>enable</Nullable>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <ImplicitUsings>enable</ImplicitUsings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0"/>
+    <PackageVersion Include="Microsoft.Extensions.Logging" Version="8.0.0"/>
+    <PackageVersion Include="Microsoft.Extensions.Logging.Console" Version="8.0.0"/>
+    <PackageVersion Include="CommandLineParser" Version="2.9.1"/>
+  </ItemGroup>
 
 </Project>
