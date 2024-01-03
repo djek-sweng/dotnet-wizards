@@ -4,11 +4,11 @@ on:
   push:
     branches:
     - main
-#    - feature/**
+    - feature/**
   pull_request:
     branches:
     - main
-#    - feature/**
+    - feature/**
   workflow_dispatch:
 
 jobs:
@@ -21,7 +21,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 7.0.x
+        dotnet-version: 8.0.x
     - name: Restore dependencies
       run: |
         cd src/

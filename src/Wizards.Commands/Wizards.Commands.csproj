@@ -1,6 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="[8.0.0, )"/>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Wizards.Commands.Abstractions\Wizards.Commands.Abstractions.csproj" />
     <ProjectReference Include="..\Wizards.Miscellaneous\Wizards.Miscellaneous.csproj" />
     <ProjectReference Include="..\Wizards.UseCases.Abstractions\Wizards.UseCases.Abstractions.csproj" />
